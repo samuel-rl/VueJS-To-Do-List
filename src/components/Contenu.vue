@@ -1,18 +1,16 @@
 <template>
     <div class="container mt-5">
 
-        <h1> Taches à accomplir </h1>
-
         <form>
             <div class="form-group">
                 <label for="action">Ajouter :</label>
-                <input type="text" id="action" class="form-control">
+                <input v-model="formData.toDo" type="text" id="action" class="form-control">
             </div>
-            <button class="btn btn-primary">Add</button>
+            <button v-on:click.prevent="addTodo" class="btn btn-primary mb-3">Add</button>
 
         </form>
         <ul>
-            <li v-bind:key="index" v-for="(toDo, index) in array">
+            <li v-bind:key="index" v-for="(toDo, index) in arrayToDo">
                 <item :toDo="toDo"></item>
             </li>
         </ul>
@@ -30,9 +28,15 @@ export default {
 			formData: {
 				toDo: '',
 			},
-			array: ['Test', 'Test1', 'Test2'],
+			arrayToDo: ['Test', 'Test1', 'Test2'],
 		};
-	},
+    },
+    methods :{
+        addTodo: function(){
+            this.arrayToDo.push(this.formData.toDo);
+            this.formData.toDo = ''
+        }
+    },
 	components: {
 		Item: Item,
 	},
@@ -46,6 +50,7 @@ export default {
 
     ul {
         list-style: none;
+        padding: 0;
     }
 </style>
 
