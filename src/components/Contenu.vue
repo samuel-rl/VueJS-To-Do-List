@@ -11,7 +11,7 @@
         </form>
         <ul>
             <li v-bind:key="index" v-for="(toDo, index) in arrayToDo">
-                <item :toDo="toDo"></item>
+                <item v-bind:id="index" :toDo="toDo" :suppression="suppression"></item>
             </li>
         </ul>
     </div>
@@ -35,6 +35,9 @@ export default {
         addTodo: function(){
             this.arrayToDo.push(this.formData.toDo);
             this.formData.toDo = ''
+        },
+        suppression: function(e){
+            this.arrayToDo.splice(e.target.parentNode.id, 1);
         }
     },
 	components: {
