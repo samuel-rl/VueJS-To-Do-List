@@ -1,15 +1,6 @@
 <template>
     <div class="container mt-5">
         <modal-form></modal-form>
-        <form>
-            <div class="form-group divForm">
-                <label class="block labelAdd" for="action">Ajouter :</label>
-                <input v-model="formData.toDo" type="text" id="action" class="block form-control displ">
-                <button v-on:click.prevent="addTodo" class="block btn btn-primary mb-3 btn-add">+</button>
-
-            </div>
-
-        </form>
         <ul>
             <li v-bind:key="index" v-for="(toDo, index) in arrayToDo">
                 <item v-bind:id="index" :toDo="toDo" :suppression="suppression"></item>
