@@ -1,12 +1,13 @@
 <template>
     <div class="container mt-5">
-
+        <modal-form></modal-form>
         <form>
-            <div class="form-group">
-                <label for="action">Ajouter :</label>
-                <input v-model="formData.toDo" type="text" id="action" class="form-control">
+            <div class="form-group divForm">
+                <label class="block labelAdd" for="action">Ajouter :</label>
+                <input v-model="formData.toDo" type="text" id="action" class="block form-control displ">
+                <button v-on:click.prevent="addTodo" class="block btn btn-primary mb-3 btn-add">+</button>
+
             </div>
-            <button v-on:click.prevent="addTodo" class="btn btn-primary mb-3">Add</button>
 
         </form>
         <ul>
@@ -20,6 +21,7 @@
 
 <script>
 import Item from './Item';
+import ModalForm from './ModalForm';
 
 export default {
 	name: 'Contenu',
@@ -30,30 +32,54 @@ export default {
 			},
 			arrayToDo: ['Test', 'Test1', 'Test2'],
 		};
-    },
-    methods :{
-        addTodo: function(){
-            this.arrayToDo.push(this.formData.toDo);
-            this.formData.toDo = ''
-        },
-        suppression: function(e){
-            this.arrayToDo.splice(e.target.parentNode.id, 1);
-        }
-    },
+	},
+	methods: {
+		addTodo: function() {
+			if (this.formData.toDo != '') {
+				this.arrayToDo.push(this.formData.toDo);
+				this.formData.toDo = '';
+			}
+		},
+		suppression: function(e) {
+			this.arrayToDo.splice(e.target.parentNode.id, 1);
+		},
+	},
 	components: {
-		Item: Item,
+        Item: Item,
+        ModalForm: ModalForm
 	},
 };
 </script>
 
 <style scoped>
-    h1 {
-        margin-top: 100px !important;
-    }
+h1 {
+	margin-top: 100px !important;
+}
 
-    ul {
-        list-style: none;
-        padding: 0;
-    }
+ul {
+	list-style: none;
+	padding: 0;
+}
+
+.divForm {
+	text-align: center;
+}
+
+.displ {
+	width: 80%;
+}
+
+.block {
+	display: inline-block !important;
+}
+
+.labelAdd {
+	margin-right: 10px;
+}
+
+.btn-add {
+	cursor: pointer;
+	margin-left: 10px;
+}
 </style>
 
