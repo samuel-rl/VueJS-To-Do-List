@@ -1,6 +1,7 @@
 <template>
     <div class="container mt-5">
         <modal-form></modal-form>
+        <button-add></button-add>
         <ul>
             <li v-bind:key="index" v-for="(toDo, index) in arrayToDo">
                 <item v-bind:id="index" :toDo="toDo" :suppression="suppression"></item>
@@ -13,6 +14,7 @@
 <script>
 import Item from './Item';
 import ModalForm from './ModalForm';
+import ButtonAdd from './ButtonAdd';
 
 export default {
 	name: 'Contenu',
@@ -37,7 +39,8 @@ export default {
 	},
 	components: {
         Item: Item,
-        ModalForm: ModalForm
+        ModalForm: ModalForm,
+        ButtonAdd: ButtonAdd
 	},
 };
 </script>
