@@ -1,6 +1,6 @@
 <template>
-    <div class="modal">
-        <div class="modal-content">
+    <div id="modal" class="modal" v-on:click="test">
+        <div id="modal-content" class="modal-content">
             <form>
                 <div class="form-group">
                     <input v-model="formData.toDo" type="text" id="action" class="form-control inputAdd">
@@ -29,14 +29,19 @@ export default {
 			}else{
                 document.getElementById("action").focus();
             }
-		},
+        },
+        test : function(e){
+            if(e.srcElement.id == "modal"){
+                this.$emit('changeIsAddModal', false)
+            }
+        }
 	},
 };
 </script>
 
 <style scoped>
 .modal {
-	display: none;
+	display: block;
 	position: fixed;
 	width: 100%;
 	height: 100%;

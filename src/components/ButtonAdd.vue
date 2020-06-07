@@ -11,13 +11,18 @@
 </template>
 
 <template>
-    <button type="button" class="btn btn-primary addButton">+</button>
+    <button v-on:click="changeIsAddModal" type="button" class="btn btn-primary addButton">+</button>
 </template>
 
 
 <script>
 export default {
-	name: 'ButtonAdd',
+    name: 'ButtonAdd',
+    methods: {
+        changeIsAddModal: function(){
+            this.$emit('changeIsAddModal', true)
+        }
+    }
 };
 </script>
 
