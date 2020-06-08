@@ -28,17 +28,17 @@ export default {
 
 <style scoped>
 .addButton{
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     position: absolute;
-    bottom: 10px;
-    right: 10px;
+    bottom: 40px;
+    right: 20px;
     font-size: 30px;
     transition: all ease 0.6s;
 }
 
 .addButton:hover{
-    border-radius: 20px;
+    border-radius: 10px;
 }
 </style>
 

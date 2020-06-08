@@ -1,6 +1,7 @@
 <template>
     <div class="container mt-5">
-        <modal-form v-if="isAddModal" v-on:changeIsAddModal="changingIsAddModal($event)"></modal-form>
+        <div v-if="arrayToDo.length == 0">Ajouter des Taches à faire</div>
+        <modal-form v-if="isAddModal" v-on:addingToDo="addToDo($event)" v-on:changeIsAddModal="changingIsAddModal($event)"></modal-form>
         <button-add v-else v-on:changeIsAddModal="changingIsAddModal($event)"></button-add>
         <ul>
             <li v-bind:key="index" v-for="(toDo, index) in arrayToDo">
@@ -23,19 +24,16 @@ export default {
 			formData: {
 				toDo: '',
 			},
-            arrayToDo: ['Test', 'Test1', 'Test2'],
+            arrayToDo: [],
             isAddModal : false
 		};
 	},
 	methods: {
-		addTodo: function() {
-			if (this.formData.toDo != '') {
-				this.arrayToDo.push(this.formData.toDo);
-				this.formData.toDo = '';
-			}
+		addToDo: function(td) {
+				this.arrayToDo.push(td);
 		},
 		suppression: function(e) {
-			this.arrayToDo.splice(e.target.parentNode.id, 1);
+            this.arrayToDo.splice(e.target.parentNode.id, 1);
         },
         changingIsAddModal: function(bool){
             this.isAddModal= bool

@@ -24,13 +24,15 @@ export default {
     methods: {
 		addTodo: function() {
 			if (this.formData.toDo != '') {
-				this.arrayToDo.push(this.formData.toDo);
-				this.formData.toDo = '';
+				this.$emit('addingToDo', this.formData.toDo)
+                this.formData.toDo = '';
+                this.$emit('changeIsAddModal', false)
 			}else{
                 document.getElementById("action").focus();
             }
         },
         test : function(e){
+            
             if(e.srcElement.id == "modal"){
                 this.$emit('changeIsAddModal', false)
             }
